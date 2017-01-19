@@ -427,7 +427,7 @@ var resizePizzas = function(size) {
     var oldWidth = elem.offsetWidth;
     var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
     var oldSize = oldWidth / windowWidth;
-    var newSize = sizeSwitcher(size);
+    var newSize = sliderSwitch(size);
     var dx = (newSize - oldSize) * windowWidth;
 
     return dx;
@@ -437,7 +437,7 @@ var resizePizzas = function(size) {
    function changePizzaSizes(size) {
     
     //Converts the pizza sizes into percent widths
-    function sizeWidth(size) {
+    function sliderSwitch(size) {
       switch(size) {
         case "1":
           return 25;
@@ -456,7 +456,7 @@ var resizePizzas = function(size) {
 
     //iterates through all the static pizzas to resize them
     for (var i = 0; i < numPizzas; i++) {
-      selectedPizza[i].style.width = sizeWidth(size) + '%';
+      selectedPizza[i].style.width = sliderSwitch(size) + '%';
     }
   }
 
@@ -506,7 +506,9 @@ function updatePositions() {
   var phase = [];
   for (var i = 0; i < 5; i++) {
     phase[i] = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-  }  
+  }
+
+  //move the style   
   for (var i = 0; i < items.length; i++) {
     items[i].style.left = items[i].basicLeft + 100 * phase[i % 5] + 'px';
   }
